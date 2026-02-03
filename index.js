@@ -7,6 +7,22 @@ app.get("/", (c) => {
     return c.text("Validation Service is Running");
 })
 
+function isNameValid(name) {
+    // Cek name
+    if (!name || name.trim() === "") return false;
+    // if name shoter than 3 characters
+    if (name.length < 3) return false;
+    return true;
+}
+
+function isEmailValid(email) {
+    if (!email) return false;
+
+    // should contain "@" and "."
+    if (!email.includes("@") || !email.includes(".")) return false;
+    return true;
+}
+
 app.post("/register", async (c) => {
     // Get JSON body
     const body = await c.req.json()
